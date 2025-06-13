@@ -9551,7 +9551,7 @@ h6,
 }
 /*--fondo secundario--*/
 .page-header {
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url(../img/Fondosecundario.png), no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url(img/football.jpg), no-repeat center center;
   background-size: cover;
 }
 
@@ -9621,7 +9621,7 @@ h6,
 }
 
 .bg-registration {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/carousel-1.jpg), no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(img/football.jpg), no-repeat center center;
   background-size: cover;
 }
 
