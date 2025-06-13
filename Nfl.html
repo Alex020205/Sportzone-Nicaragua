@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Nicaragua/Nascar</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/Futbol.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="index.html" class="navbar-brand">
+                    <h1 class="m-0 text-primary"><span class="text-dark">JERSYS</span>.NIC</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="index.html" class="nav-item nav-link active">Hogar</a>
+                        <a href="about.html" class="nav-item nav-link">Acerca de</a>
+                        <a href="service.html" class="nav-item nav-link">Servicios</a>
+                        <a href="carrito.html" class="nav-item nav-link">Carrito</a>
+                        <a href="contact.html" class="nav-item nav-link">Contacto</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Header Start -->
+    <div class="container-fluid page-header">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+    <div class="container">
+        <div class="product-image">
+            <img id="main-image" src="img/logop.png" alt="Camisa de fútbol">
+        </div>
+
+        <div class="product-list" style="max-height: 500px; overflow-y: auto;">
+            <h1>Camisas de Futbol</h1>
+            <h2>Elige la de tu equipo favorito</h2>
+
+            <div class="product-item active" onclick="changeImage('img/Camisa-tienda/yamaha.png', this)">
+                <h3>Camisa de Monster Energy Yamaha</h3>
+                <h4>$48</h4>
+                <p>Reciente 2025</p>
+                <button class="add-to-cart-btn"
+                    onclick="event.stopPropagation(); addToCartAndRedirect('Camisa de Monster Energy Yamaha', '$48.00', 'img/Camisa-tienda/yamaha.png')">
+                    Añadir
+                </button>
+            </div>
+
+            <div class="product-item active" onclick="changeImage('img/Camisa-tienda/valentino.png', this)">
+                <h3>Camisa de Valentino Rossi x Monster</h3>
+                <p>Reciente 2025</p>
+                <h4>$48</h4>
+                <button class="add-to-cart-btn"
+                    onclick="event.stopPropagation(); addToCartAndRedirect('Camisa de Valentino Rossi x Monster', '$48.00', 'img/Camisa-tienda/valentino.png')">
+                    Añadir
+                </button>
+            </div>
+
+            <div class="product-item active" onclick="changeImage('img/Camisa-tienda/pedro.png', this)">
+                <h3>Camisa de Pedro Acosta 31</h3>
+                <p>Reciente 2025</p>
+                <h4>$48</h4>
+                <button class="add-to-cart-btn"
+                    onclick="event.stopPropagation(); addToCartAndRedirect('Camisa de Pedro Acosta 31', '$48.00', 'img/Camisa-tienda/pedro.png')">
+                    Añadir
+                </button>
+            </div>
+
+            <div class="product-item active" onclick="changeImage('img/Camisa-tienda/repsol.png', this)">
+                <h3>Camisa de Repsol</h3>
+                <p>Reciente 2025</p>
+                <h4>$48</h4>
+                <button class="add-to-cart-btn"
+                    onclick="event.stopPropagation(); addToCartAndRedirect('Camisa de Repsol', '$48.00', 'img/Camisa-tienda/repsol.png')">
+                    Añadir
+                </button>
+            </div>
+
+            <div class="product-item active" onclick="changeImage('img/Camisa-tienda/ducati.png', this)">
+                <h3>Camisa de Ducati</h3>
+                <p>Reciente 2025</p>
+                <h4>$48</h4>
+                <button class="add-to-cart-btn"
+                    onclick="event.stopPropagation(); addToCartAndRedirect('Camisa de Ducati', '$48.00', 'img/Camisa-tienda/ducati.png')">
+                    Añadir
+                </button>
+            </div>
+
+            <div class="product-item active" onclick="changeImage('img/Camisa-tienda/aprilia.png', this)">
+                <h3>Camisa de Aprilia</h3>
+                <p>Reciente 2025</p>
+                <h4>$48</h4>
+                <button class="add-to-cart-btn"
+                    onclick="event.stopPropagation(); addToCartAndRedirect('Camisa de Aprilia', '$48.00', 'img/Camisa-tienda/aprilia.png')">
+                    Añadir
+                </button>
+            </div>
+
+            <div class="buy-section">
+                <a href="carrito.html" class="cart-link">ver en el carrito</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar la interfaz del carrito -->
+    <div id="cartModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+        <div style="background:#fff; border-radius:8px; max-width:500px; width:90%; padding:20px; position:relative;">
+            <button onclick="closeCartModal()" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:22px; cursor:pointer;">&times;</button>
+            <div id="cartItemsContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        function addToCartAndRedirect(title, price, image) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            const newItem = {
+                id: `${Date.now()}`,
+                title: title,
+                price: price,
+                priceValue: parseFloat(price.replace(/[^0-9.]/g, '')),
+                image: image,
+                quantity: 1
+            };
+
+            cart.push(newItem);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            showCartModal();
+        }
+
+        function showCartModal() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const container = document.getElementById('cartItemsContainer');
+            if (cart.length === 0) {
+                container.innerHTML = '<p>El carrito está vacío.</p>';
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div style="display:flex; align-items:center; margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px;">
+                        <img src="${item.image}" alt="${item.title}" style="width:60px; height:60px; object-fit:cover; margin-right:15px;">
+                        <div>
+                            <div style="font-weight:bold;">${item.title}</div>
+                            <div style="color:#888;">${item.price}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            document.getElementById('cartModal').style.display = 'flex';
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+    </script>
+
+
+    <script>
+        function changeImage(src, element) {
+            // Cambiar la imagen principal
+            document.getElementById('main-image').src = src;
+
+            // Remover la clase 'active' de todos los items
+            const items = document.querySelectorAll('.product-item');
+            items.forEach(item => item.classList.remove('active'));
+
+            // Agregar la clase 'active' al item seleccionado
+            element.classList.add('active');
+        }
+    </script>
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+
+</body>
+
+</html>

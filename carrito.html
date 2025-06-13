@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Nicaragua/carrito</title>
+    <link rel="stylesheet" href="css/carrito.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="cart-items"
+            style="max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #888 #f1f1f1;">
+            <h3>Tu Carrito <span style="float:right">(0 Items)</span></h3>
+            <div class="empty-cart">Tu carrito está vacío</div>
+
+            <!-- Template para items del carrito (oculto) -->
+            <div class="cart-item" style="display: none;">
+                <div class="item-details">
+                    <h4></h4>
+                    <p class="item-price"></p>
+                    <button class="btn-info">Eliminar</button>
+                    <img src="" alt="">
+                </div>
+                
+                <div class="item-actions">
+                    <label for="size-select">Selecione su talla:</label>
+                    <select id="size-select" class="size-select">
+                        <option value="" disabled selected>Seleccione una talla</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    <input type="number" min="1" value="1">
+                    <p class="item-total"></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cart-summary">
+            <h3>Resumen del Pedido</h3>
+            <p><strong>Total:</strong> $0.00</p>
+            <button class="checkout-btn">Pagar Ahora</button>
+            <button class="checkout-btn" id="btnFactura">Generar Factura</button>
+
+            <div class="support">
+                <h4>Contacto</h4>
+                <p>📞 +505 8888 8888</p>
+                <p>Disponible 24/7</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function isAllSizesSelected() {
+            // Devuelve true si todos los items tienen una talla seleccionada válida
+            return cartItems.every(item => item.size && item.size !== "");
+        }
+
+
+        let cartItems = [];
+
+        function addToCart(productData) {
+            const uniqueId = `${productData.id}-${Date.now()}`;
+            cartItems.push({
+                id: uniqueId,
+                productId: productData.id,
+                title: productData.title,
+                price: productData.price,
+                priceValue: parseFloat(productData.price.replace(/[^0-9.]/g, '')),
+                image: productData.image,
+                quantity: 1
+            });
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            updateCartUI();
+            showNotification(`${productData.title} agregado al carrito`);
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'cart-notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.classList.add('fade-out');
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        function updateCartUI() {
+            const cartContainer = document.querySelector('.cart-items');
+            const itemCountSpan = cartContainer.querySelector('h3 span');
+            const template = cartContainer.querySelector('.cart-item');
+            const emptyCartMsg = cartContainer.querySelector('.empty-cart');
+            const summaryTotal = document.querySelector('.cart-summary p strong');
+
+            document.querySelectorAll('.cart-item:not([style*="display: none"])').forEach(el => el.remove());
+            itemCountSpan.textContent = `(${cartItems.length} ${cartItems.length === 1 ? 'Producto' : 'Productos'})`;
+
+            let total = 0;
+            if (cartItems.length === 0) {
+                emptyCartMsg.style.display = 'block';
+            } else {
+                emptyCartMsg.style.display = 'none';
+                cartItems.forEach(item => {
+                    const itemTotal = item.priceValue * item.quantity;
+                    total += itemTotal;
+                    const newItem = template.cloneNode(true);
+                    newItem.style.display = 'flex';
+                    newItem.dataset.id = item.id;
+                    newItem.querySelector('h4').textContent = item.title;
+                    newItem.querySelector('.item-price').textContent = item.price;
+                    newItem.querySelector('img').src = item.image;
+                    newItem.querySelector('img').alt = item.title;
+                    newItem.querySelector('input').value = item.quantity;
+                    newItem.querySelector('.item-total').textContent = `$${itemTotal.toFixed(2)}`;
+                    newItem.querySelector('.btn-info').onclick = () => removeItem(item.id);
+                    newItem.querySelector('input').onchange = (e) => {
+                        updateQuantity(item.id, Math.max(1, parseInt(e.target.value) || 1));
+                    };
+                    // Set size if exists
+                    if (item.size) {
+                        newItem.querySelector('.size-select').value = item.size;
+                    }
+                    cartContainer.appendChild(newItem);
+                });
+            }
+            const formattedTotal = total.toLocaleString('es-NI', {
+                style: 'currency', currency: 'NIO', minimumFractionDigits: 2
+            });
+            summaryTotal.nextSibling.textContent = ` ${formattedTotal}`;
+        }
+
+        function removeItem(id) {
+            cartItems = cartItems.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            updateCartUI();
+            showNotification('Producto eliminado del carrito');
+        }
+
+        function updateQuantity(id, quantity) {
+            const item = cartItems.find(item => item.id === id);
+            if (item) {
+                item.quantity = quantity;
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                updateCartUI();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+            }
+            updateCartUI();
+
+            document.querySelector('.checkout-btn')?.addEventListener('click', () => {
+                if (cartItems.length === 0) {
+                    showNotification('El carrito está vacío');
+                    return;
+                }
+                localStorage.removeItem('cart');
+                cartItems = [];
+                updateCartUI();
+                showNotification('¡Compra realizada con éxito!');
+            });
+
+            // Evento para generar factura
+            document.getElementById('btnFactura').addEventListener('click', () => {
+                if (cartItems.length === 0) {
+                    showNotification('No hay productos para facturar');
+                    return;
+                }
+
+                // Usar jsPDF desde window.jspdf
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+
+                doc.setFontSize(12);
+                doc.text('Factura', 150, 15);
+                doc.text('', 20, 20);
+                doc.text('Calle Solobo 35', 20, 26);
+                doc.text('48008 Bilbao, España', 20, 32);
+
+                doc.text('Para:', 20, 45);
+                doc.text('chepe ramon', 20, 51);
+                doc.text('Nicaragua, Managua', 20, 57);
+                doc.text('Direccion: Calle Solobo 2 cuadras al sur casa 8392', 20, 63);
+
+                const today = new Date();
+                const fecha = today.toLocaleDateString('es-ES');
+                doc.text(`Fecha: ${fecha}`, 150, 45);
+                doc.text(`N° Factura: ${Math.floor(Math.random() * 100000)}`, 150, 51);
+
+                // Tabla con columna de Talla
+                const headers = [['Descripción', 'Talla', 'Cantidad', 'Precio (C$)', 'Importe (C$)']];
+                const data = cartItems.map(item => [
+                    item.title,
+                    item.size || 'N/A',
+                    item.quantity.toString(),
+                    item.priceValue.toFixed(2),
+                    (item.priceValue * item.quantity).toFixed(2)
+                ]);
+
+                // Usamos autoTable para mejor presentación
+                if (typeof doc.autoTable === "function") {
+                    doc.autoTable({
+                        head: headers,
+                        body: data,
+                        startY: 70,
+                        styles: { halign: 'center' },
+                        headStyles: { fillColor: [50, 50, 50] },
+                    });
+                } else {
+                    alert('No se pudo cargar la tabla en el PDF. Intenta recargar la página.');
+                    return;
+                }
+
+                const total = cartItems.reduce((sum, item) => sum + item.priceValue * item.quantity, 0);
+                const iva = total * 0.15;
+                const totalFinal = total + iva;
+
+                let y = doc.lastAutoTable ? doc.lastAutoTable.finalY + 10 : 100;
+                doc.text(`Total neto: C$ ${total.toFixed(2)}`, 140, y);
+                doc.text(`IVA 15%: C$ ${iva.toFixed(2)}`, 140, y + 7);
+                doc.setFontSize(14);
+                doc.text(`Total a pagar: C$ ${totalFinal.toFixed(2)}`, 140, y + 16);
+
+                doc.save('factura.pdf');
+            });
+
+            // Guardar la talla seleccionada en el carrito
+            document.querySelector('.cart-items').addEventListener('change', function (e) {
+                if (e.target.classList.contains('size-select')) {
+                    const cartItemDiv = e.target.closest('.cart-item');
+                    const itemId = cartItemDiv?.dataset.id;
+                    if (itemId) {
+                        const item = cartItems.find(i => i.id === itemId);
+                        if (item) {
+                            item.size = e.target.value;
+                            localStorage.setItem('cart', JSON.stringify(cartItems));
+                        }
+                    }
+                }
+            });
+
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .cart-notification {
+                position: fixed;
+                top: 30px;
+                right: 30px;
+                background: #4caf50;
+                color: #fff;
+                padding: 16px 28px;
+                border-radius: 8px;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+                font-size: 1rem;
+                z-index: 9999;
+                opacity: 1;
+                transition: opacity 0.5s;
+            }
+            .cart-notification.fade-out {
+                opacity: 0;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+
+</html>
