@@ -38,123 +38,65 @@
 
 
 
-    <div class="jersey-grid">
+    <div class="jersey-grid" id="jerseyGrid"></div>
 
-        <!-- Jersey ejemplo -->
+<script>
+const productos = [
+    { id: 1, nombre: 'Camiseta Argentina', img: 'img/Camisa-tienda/aprilia.png' },
+    { id: 2 , nombre: 'Camiseta Ducati', img: 'img/Camisa-tienda/ducati.png' },
+    { id: 3, nombre: 'Camiseta Repsol', img: 'img/Camisa-tienda/repsol.png' },
+    { id: 4, nombre: 'Camiseta Pedro', img: 'img/Camisa-tienda/pedro.png' },
+    { id: 5, nombre: 'Camiseta Valentino', img: 'img/Camisa-tienda/valentino.png' },
+    { id: 6, nombre: 'Camiseta Yamaha', img: 'img/Camisa-tienda/yamaha.png' },
+    { id: 7, nombre: 'Camiseta Alpine', img: 'img/Camisa-tienda/alpine.png' },
+    { id: 8, nombre: 'Camiseta Haas', img: 'img/Camisa-tienda/haas.png' },
+    { id: 9, nombre: 'Camiseta Mercedes', img: 'img/Camisa-tienda/mercedes.png' },
+    { id: 10, nombre: 'Camiseta Ferrari', img: 'img/Camisa-tienda/ferrari.png' },
+    { id: 11, nombre: 'Camiseta Aston Martin', img: 'img/Camisa-tienda/aston.png' },
+    { id: 12, nombre: 'Camiseta Redbull Racing', img: 'img/Camisa-tienda/redbull.png' },
+    { id: 13, nombre: 'Camiseta Orioles', img: 'img/Camisa-tienda/orioles.png' },
+    { id: 14, nombre: 'Camiseta Royals', img: 'img/Camisa-tienda/Royals.png' },
+    { id: 15, nombre: 'Camiseta Arizona', img: 'img/Camisa-tienda/Arizona.png' },
+    { id: 16, nombre: 'Camiseta Medias Rojas', img: 'img/Camisa-tienda/Redsox.png' },
+    { id: 17, nombre: 'Camiseta Los Dodgers', img: 'img/Camisa-tienda/Dodgers.png' },
+    { id: 18, nombre: 'Camiseta Yankees', img: 'img/Camisa-tienda/Yankees.png' },
+    { id: 19, nombre: 'Camiseta Boston', img: 'img/Camisa-tienda/boston.png' },
+    { id: 20, nombre: 'Camiseta Brooklyn', img: 'img/Camisa-tienda/brooklyn.png' },
+    { id: 21, nombre: 'Camiseta Detroit', img: 'img/Camisa-tienda/detroit.png' },
+    { id: 22, nombre: 'Camiseta Indiana', img: 'img/Camisa-tienda/indiana.png' },
+    { id: 23, nombre: 'Camiseta Chicago Bulls', img: 'img/Camisa-tienda/chicago-bulls.png' },
+    { id: 24, nombre: 'Camiseta Los Angeles Lakers', img: 'img/Camisa-tienda/lakers.png' },
+    { id: 25, nombre: 'Camiseta Dolphins', img: 'img/Camisa-tienda/dolphins.png' },
+    { id: 26, nombre: 'Camiseta Bayer de munich', img: 'img/Camisa-tienda/bayer.avif' },
+    { id: 27, nombre: 'Camiseta paris saint germain', img: 'img/Camisa-tienda/paris.jpg' },
+    { id: 28, nombre: 'Camiseta atletico de madrid', img: 'img/Camisa-tienda/atletico.png' },
+    { id: 29, nombre: 'Camiseta Inter de Milan', img: 'img/Camisa-tienda/inter.png' },
+    { id: 30, nombre: 'Camiseta Real Madrid', img: 'img/Camisa-tienda/madrid.png' },
+    { id: 31, nombre: 'Camiseta Barcelona', img: 'img/Camisa-tienda/barca.png' },
+    { id: 32, nombre: 'Camiseta Manchester United', img: 'img/Camisa-tienda/MangaCorta.png' },
+];
 
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        <div class="jersey-item" data-id="1"> <!-- Producto 1 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 1">
-            <div class="jersey-title">Camiseta Brasil</div>
-        </div>
-        
-        <div class="jersey-item" data-id="2"> <!-- Producto 2 -->
-            <img src="img/CamisasJerseys.png" alt="Camiseta 2">
-            <div class="jersey-title">Camiseta Argentina</div>
-        </div>
-        
-        
+const cantidadPorProducto = 1; // Ejemplo: 12 de cada uno
+const grid = document.getElementById('jerseyGrid');
+
+productos.forEach(producto => {
+    for (let i = 0; i < cantidadPorProducto; i++) {
+        const item = document.createElement('div');
+        item.className = 'jersey-item';
+        item.setAttribute('data-id', producto.id);
+
+        item.innerHTML = `
+            <img src="${producto.img}" alt="${producto.nombre}" style="width: 150px; height: 150px; object-fit: cover;">
+            <div class="jersey-title">${producto.nombre}</div>
+        `;
+
+        grid.appendChild(item);
+    }
+});
 
 
-    </div>
+</script>
+
 </body>
 
 </html>
