@@ -177,3 +177,10 @@ h3 {
     }
 }
 
+.tab-link{
+    height: auto;
+}
+.tab-link a {
+    padding: 10px 15px;
+
+}
