@@ -85,7 +85,7 @@
                         <div class="input-group">
                             <label for="style">Estilo</label>
                             <select id="style">
-                            <option value="" disabled selected>Selecciona un estilo</option>
+                                <option value="" disabled selected>Selecciona un estilo</option>
                                 <option value="clasico">Clásico</option>
                                 <option value="ajustado">Ajustado</option>
                                 <option value="mangalarga">Manga larga</option>
@@ -149,8 +149,10 @@
                         <div class="color-picker-container">
                             <input type="color" id="color" value="#2a5bd7">
                             <div class="color-preview" id="colorPreview" style="background: #2a5bd7;"></div>
+                            <input type="text" id="colorName" readonly value="Azure Blue">
                         </div>
                     </div>
+
 
                     <div class="input-group">
                         <label for="size">Talla <span class="badge">Requerido</span></label>
@@ -174,8 +176,93 @@
             </div>
 
             <button type="submit" class="btn-submit">Continuar al Pago</button>
+            <button type="button" id="generarFacturaPersonalizada">Generar Factura Personalizada</button>
+
         </form>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+<script>
+    document.getElementById("generarFacturaPersonalizada").addEventListener("click", () => {
+        const data = JSON.parse(localStorage.getItem("camisetaPersonalizada"));
+
+        if (!data) {
+            alert("No hay datos guardados de personalización.");
+            return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.setFontSize(16);
+        doc.text("Factura - Camiseta Personalizada", 105, 15, null, null, "center");
+
+        doc.setFontSize(12);
+        doc.text(`Cliente: ${data.nombre || 'No especificado'}`, 20, 30);
+        doc.text(`Equipo: ${data.equipo || 'No especificado'}`, 20, 36);
+        doc.text(`Deporte: ${data.deporte || 'No especificado'}`, 20, 42);
+        doc.text(`Tela: ${data.tela || 'No especificado'}`, 20, 48);
+        doc.text(`Estilo: ${data.estilo || 'No especificado'}`, 20, 54);
+        doc.text(`Color: ${data.color || 'No especificado'}`, 20, 60);
+        doc.text(`Talla: ${data.talla || 'No especificado'}`, 20, 66);
+        doc.text(`Número: ${data.numero || 'N/A'}`, 20, 72);
+        doc.text(`Fecha: ${new Date().toLocaleDateString('es-NI')}`, 150, 30);
+
+        if (data.notas && data.notas.trim() !== "") {
+            doc.setFontSize(11);
+            doc.text("Notas adicionales:", 20, 80);
+            doc.text(doc.splitTextToSize(data.notas, 170), 20, 86);
+        }
+
+        // Precio base estimado
+        const precio = 65.00;
+        const iva = precio * 0.15;
+        const total = precio + iva;
+
+        let yFinal = doc.lastAutoTable ? doc.lastAutoTable.finalY + 20 : 110;
+
+        doc.setFontSize(12);
+        doc.text(`Precio Base: $${precio.toFixed(2)}`, 140, yFinal);
+        doc.text(`IVA (15%): $${iva.toFixed(2)}`, 140, yFinal + 6);
+        doc.setFontSize(14);
+        doc.text(`Total a pagar: $${total.toFixed(2)}`, 140, yFinal + 14);
+
+        doc.save(`factura_personalizada_${data.nombre.replace(/\s+/g, '_') || 'cliente'}.pdf`);
+    });
+</script>
+
+
+    <script>
+        const colorInput = document.getElementById('color');
+        const preview = document.getElementById('colorPreview');
+        const colorNameInput = document.getElementById('colorName');
+
+        const colorNames = {
+            "#000000": "Black",
+            "#ffffff": "White",
+            "#ff0000": "Red",
+            "#00ff00": "Lime",
+            "#0000ff": "Blue",
+            "#2a5bd7": "Azure Blue",
+            "#ffff00": "Yellow",
+            "#ffa500": "Orange",
+            "#800080": "Purple"
+            // Puedes agregar más colores según necesites
+        };
+
+        function getClosestColorName(hex) {
+            return colorNames[hex.toLowerCase()] || hex;
+        }
+
+        colorInput.addEventListener('input', () => {
+            const color = colorInput.value;
+            preview.style.background = color;
+            colorNameInput.value = getClosestColorName(color);
+        });
+    </script>
+
 
     <script>
         // Cambiar color del preview
@@ -203,7 +290,7 @@
                     imageUrl = 'img/Camisa-tienda/camisetadeportivaclasica.png';
                     break;
                 case 'ajustado':
-                    imageUrl = '';
+                    imageUrl = 'img/Camisa-tienda/Ajustada.png';
                     break;
                 case 'mangalarga':
                     imageUrl = 'img/Camisa-tienda/MangaLarga.png';
@@ -234,7 +321,7 @@
         window.addEventListener('load', preloadImages);
     </script>
 
-        <!-- JavaScript Libraries -->
+    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
@@ -251,4 +338,5 @@
     <script src="js/main.js"></script>
 
 </body>
+
 </html>

@@ -1,5 +1,5 @@
 :root {
-    --primary: #2a5bd7;
+    --primary: #000000;
     --secondary: #f8f9fa;
     --accent: #ff4757;
 }
@@ -118,7 +118,7 @@ select:focus {
 }
 
 .btn-submit:hover {
-    background: #1e4ac4;
+    background: #000000;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(42, 91, 215, 0.2);
 }
@@ -207,4 +207,27 @@ select:focus {
         font-size: 14px;
         padding: 10px 0;
     }
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.color-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.color-preview {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#colorName {
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 150px;
 }
