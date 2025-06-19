@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     <div>
         <main ontouchstart>
             <nav class="tab-link">
@@ -58,9 +59,9 @@
             <h3>Resumen del Pedido</h3>
             <p><strong>Total:</strong> $0.00</p>
             <button onclick="location.href='Registro-datos.html'" class="checkoutbtn">Pagar Ahora</button>
-            <button class="checkout-btn" id="btnFactura">Generar Factura</button>
+            <!--<button class="checkout-btn" id="btnFactura">Generar Factura</button>
 
-            <!-- <div class="shirt-preview">
+             <div class="shirt-preview">
                 <h4>Te puede interesar</h4>
                 <div class="shirt-item">
                     <img src="img/Camisa-tienda/barca.png" alt="Camisa" style="width: 100px; height: auto;">
@@ -69,6 +70,7 @@
                     <button onclick="addToCart({ id: 'shirt1', title: 'Camisa Deportiva', price: 'C$ 500.00', image: 'img/Camisa-tienda/barca.png' })">Agregar al carrito</button>
                 </div>
             </div> -->
+
         </div>
     </div>
 
@@ -186,7 +188,7 @@
                 showNotification('¡Compra realizada con éxito!');
             });
 
-            // Evento para generar factura
+
             document.getElementById('btnFactura').addEventListener('click', () => {
                 if (cartItems.length === 0) {
                     showNotification('No hay productos para facturar');
@@ -194,24 +196,6 @@
                 }
 
                 // Usar jsPDF desde window.jspdf
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-
-                doc.setFontSize(12);
-                doc.text('Factura', 150, 15);
-                doc.text('', 20, 20);
-                doc.text('Calle Solobo 35', 20, 26);
-                doc.text('48008 Bilbao, España', 20, 32);
-
-                doc.text('Para:', 20, 45);
-                doc.text('chepe ramon', 20, 51);
-                doc.text('Nicaragua, Managua', 20, 57);
-                doc.text('Direccion: Calle Solobo 2 cuadras al sur casa 8392', 20, 63);
-
-                const today = new Date();
-                const fecha = today.toLocaleDateString('es-ES');
-                doc.text(`Fecha: ${fecha}`, 150, 45);
-                doc.text(`N° Factura: ${Math.floor(Math.random() * 100000)}`, 150, 51);
 
                 // Tabla con columna de Talla
                 const headers = [['Descripción', 'Talla', 'Cantidad', 'Precio (C$)', 'Importe (C$)']];
