@@ -78,22 +78,21 @@
                 }
 
                 const mensajeWA = `
-Hola, soy ${nombre}.
-Quiero pagar con *WhatsApp*. Mis datos son:
-📞 Teléfono: ${telefono}
-📧 Email: ${email}
-📍 Dirección: ${direccion}
+                Hola, soy ${nombre}.
+                Quiero pagar con *WhatsApp*. Mis datos son:
+                📞 Teléfono: ${telefono}
+                📧 Email: ${email}
+                📍 Dirección: ${direccion}
 
-🛍️ *Detalles de la camiseta personalizada:*
-• Deporte: ${datosCamisa.deporte}
-• Estilo: ${datosCamisa.estilo}
-• Nombre: ${datosCamisa.nombre}
-• Número: ${datosCamisa.numero}
-• Equipo: ${datosCamisa.equipo}
-• Color: ${datosCamisa.colorNombre} (${datosCamisa.color})
-• Talla: ${datosCamisa.talla}
-• Notas: ${datosCamisa.notas || 'Ninguna'}
-            `;
+                🛍️ *Detalles de la camiseta personalizada:*
+                • Deporte: ${datosCamisa.deporte}
+                • Estilo: ${datosCamisa.estilo}
+                • Nombre: ${datosCamisa.nombre}
+                • Número: ${datosCamisa.numero}
+                • Equipo: ${datosCamisa.equipo}
+                • Color: ${datosCamisa.colorNombre} (${datosCamisa.color})
+                • Talla: ${datosCamisa.talla}
+                • Notas: ${datosCamisa.notas || 'Ninguna'}`;
 
                 const numero = "50581933127";
                 const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensajeWA.trim())}`;
