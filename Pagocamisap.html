@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Formulario de Compra</title>
     <link rel="stylesheet" href="css/Registro.css">
-        <link rel="stylesheet" href="css/carrito.css">
+    <link rel="stylesheet" href="css/carrito.css">
 </head>
 
 <body>
@@ -43,7 +43,8 @@
                 <option value="">Selecciona una opción</option>
                 <option value="whatsapp">Pagar por WhatsApp</option>
             </select>
-            <p>Al hacer clic en "Tramitar pago", se abrira nuestro whatsapp donde nuestro personal te atendera para alclarar duda, 
+            <p>Al hacer clic en "Tramitar pago", se abrira nuestro whatsapp donde nuestro personal te atendera para
+                alclarar duda,
                 tramitar el pago y especificar el punto de entrega de tu camiseta.</p>
             <button type="button" id="generarFacturaPersonalizada">Tramitar pago</button>
 
@@ -51,41 +52,60 @@
 
         <div class="mensaje" id="mensaje"></div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const boton = document.getElementById("generarFacturaPersonalizada");
 
+            if (!boton) return;
 
+            boton.addEventListener("click", function () {
+                const datosCamisa = JSON.parse(localStorage.getItem("camisetaPersonalizada"));
 
-<script>
-    document.getElementById("generarFacturaPersonalizada").addEventListener("click", function () {
-        const datosCamisa = JSON.parse(localStorage.getItem("camisetaPersonalizada"));
+                if (!datosCamisa) {
+                    alert("Faltan los datos de la camiseta. Asegúrate de completar el paso anterior.");
+                    return;
+                }
 
-        const nombre = document.getElementById("nombre").value;
-        const telefono = document.getElementById("telefono").value;
-        const email = document.getElementById("email").value;
-        const direccion = document.getElementById("direccion").value;
-        const metodo = document.getElementById("metodo").value;
+                const nombre = document.getElementById("nombre").value;
+                const telefono = document.getElementById("telefono").value;
+                const email = document.getElementById("email").value;
+                const direccion = document.getElementById("direccion").value;
+                const metodo = document.getElementById("metodo").value;
 
-        if (!nombre || !telefono || !email || !direccion || !metodo) {
-            alert("Por favor, completa todos los campos antes de generar la factura.");
-            return;
-        }
+                if (!nombre || !telefono || !email || !direccion || !metodo) {
+                    alert("Por favor, completa todos los campos antes de generar la factura.");
+                    return;
+                }
 
-        let mensajeWA = `Hola, soy ${nombre}.\nQuiero pagar con *WhatsApp*. Mis datos son:\n` +
-            `📞 Teléfono: ${telefono}\n📧 Email: ${email}\n📍 Dirección: ${direccion}\n\n` +
-            `🛍️ *Detalles de la camiseta personalizada:*\n` +
-            `• Deporte: ${datosCamisa.deporte}\n` +
-            `• Estilo: ${datosCamisa.estilo}\n` +
-            `• Nombre en la espalda: ${datosCamisa.nombre}\n` +
-            `• Número: ${datosCamisa.numero}\n` +
-            `• Equipo: ${datosCamisa.equipo}\n` +
-            `• Color: ${datosCamisa.colorNombre} (${datosCamisa.color})\n` +
-            `• Talla: ${datosCamisa.talla}\n` +
-            `• Notas: ${datosCamisa.notas}`;
+                const mensajeWA = `
+Hola, soy ${nombre}.
+Quiero pagar con *WhatsApp*. Mis datos son:
+📞 Teléfono: ${telefono}
+📧 Email: ${email}
+📍 Dirección: ${direccion}
 
-        const tuNumero = "50581933127";
-                const url = `https://wa.me/${tuNumero}?text=${encodeURIComponent(mensajeWA)}`;
+🛍️ *Detalles de la camiseta personalizada:*
+• Deporte: ${datosCamisa.deporte}
+• Estilo: ${datosCamisa.estilo}
+• Nombre: ${datosCamisa.nombre}
+• Número: ${datosCamisa.numero}
+• Equipo: ${datosCamisa.equipo}
+• Color: ${datosCamisa.colorNombre} (${datosCamisa.color})
+• Talla: ${datosCamisa.talla}
+• Notas: ${datosCamisa.notas || 'Ninguna'}
+            `;
+
+                const numero = "50581933127";
+                const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensajeWA.trim())}`;
                 window.open(url, "_blank");
-    });
-</script>
+            });
+        });
+    </script>
+
+
+
+
 
 </body>
+
 </html>
