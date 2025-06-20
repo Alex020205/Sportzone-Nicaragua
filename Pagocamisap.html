@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario de Compra</title>
+    <link rel="stylesheet" href="css/Registro.css">
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Datos del comprador</h2>
+        <form id="pagoForm">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" required>
+
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" required placeholder="Ej: 50512345678">
+
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" required>
+
+            <label for="direccion">Dirección de entrega</label>
+            <input type="text" id="direccion" required>
+
+            <label for="metodo">Método de pago</label>
+            <select id="metodo" required>
+                <option value="">Selecciona una opción</option>
+                <option value="transferencia">Paypal</option>
+                <option value="whatsapp">Pagar por WhatsApp</option>
+            </select>
+
+            <button type="submit">Tramitar pago</button>
+            <button type="button" id="generarFacturaPersonalizada">Generar Factura Personalizada</button>
+
+        </form>
+
+        <div class="mensaje" id="mensaje"></div>
+    </div>
+
+
+
+
+    <script>
+        const formulario = document.getElementById("pagoForm");
+        const mensaje = document.getElementById("mensaje");
+
+        formulario.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const nombre = document.getElementById("nombre").value;
+            const telefono = document.getElementById("telefono").value;
+            const email = document.getElementById("email").value;
+            const direccion = document.getElementById("direccion").value;
+            const metodo = document.getElementById("metodo").value;
+
+            // Puedes guardar en localStorage
+            localStorage.setItem("nombre", nombre);
+            localStorage.setItem("telefono", telefono);
+            localStorage.setItem("email", email);
+            localStorage.setItem("direccion", direccion);
+            localStorage.setItem("metodo", metodo);
+
+            if (metodo === "whatsapp") {
+                const mensajeWA = `
+                Hola, soy ${nombre}.
+                Quiero pagar con *WhatsApp*. Mis datos son:
+                📞 Teléfono: ${telefono}
+                📧 Email: ${email}
+                📍 Dirección: ${direccion}
+                Por favor, contáctenme para completar el pago. ¡Gracias!
+                `;
+                const tuNumero = "50581933127";
+                const url = `https://wa.me/${tuNumero}?text=${encodeURIComponent(mensajeWA)}`;
+                window.open(url, "_blank");
+            } else {
+                mensaje.textContent = "Datos recibidos. Procesando pago...";
+                setTimeout(() => {
+                    mensaje.textContent = "Pago tramitado correctamente.";
+                }, 2000);
+            }
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+<script>
+    document.getElementById("generarFacturaPersonalizada").addEventListener("click", () => {
+        const data = JSON.parse(localStorage.getItem("camisetaPersonalizada"));
+
+        const nombre = document.getElementById("nombre").value.trim();
+        const telefono = document.getElementById("telefono").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const direccion = document.getElementById("direccion").value.trim();
+
+        if (!data || !nombre || !telefono || !email || !direccion) {
+            alert("Por favor completa todos los datos y guarda la personalización antes de generar la factura.");
+            return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Encabezado
+        doc.setFontSize(16);
+        doc.text("Factura - Pedido Personalizado", 105, 15, null, null, "center");
+
+        // Información del cliente
+        doc.setFontSize(12);
+        doc.text(`Cliente: ${nombre}`, 20, 30);
+        doc.text(`Teléfono: ${telefono}`, 20, 36);
+        doc.text(`Correo: ${email}`, 20, 42);
+        doc.text(`Dirección: ${direccion}`, 20, 48);
+        doc.text(`Fecha: ${new Date().toLocaleDateString('es-NI')}`, 150, 30);
+
+        // Tabla con detalles del pedido personalizado
+        const headers = [["Deporte", "Tela", "Estilo", "Nombre", "Número", "Equipo", "Color", "Talla"]];
+        const cuerpo = [[
+            data.deporte || "N/A",
+            data.tela || "N/A",
+            data.estilo || "N/A",
+            data.nombre || "N/A",
+            data.numero || "N/A",
+            data.equipo || "N/A",
+            data.color || "N/A",
+            data.talla || "N/A"
+        ]];
+
+        doc.autoTable({
+            head: headers,
+            body: cuerpo,
+            startY: 60,
+            styles: { fontSize: 10, halign: 'center' },
+            headStyles: { fillColor: [60, 60, 60], textColor: 255 },
+        });
+
+        // Notas adicionales
+        if (data.notas && data.notas.trim() !== "") {
+            const notasY = doc.lastAutoTable.finalY + 10;
+            doc.setFontSize(11);
+            doc.text("Notas adicionales:", 20, notasY);
+            doc.setFontSize(10);
+            doc.text(doc.splitTextToSize(data.notas, 170), 20, notasY + 6);
+        }
+
+        // Cálculo de costos
+        const precio = 65.00;
+        const iva = precio * 0.15;
+        const total = precio + iva;
+
+        const resumenY = doc.lastAutoTable.finalY + 40;
+        doc.setFontSize(12);
+        doc.text(`Precio base: $${precio.toFixed(2)}`, 140, resumenY);
+        doc.text(`IVA (15%): $${iva.toFixed(2)}`, 140, resumenY + 6);
+        doc.setFontSize(14);
+        doc.text(`Total a pagar: $${total.toFixed(2)}`, 140, resumenY + 14);
+
+        // Guardar PDF
+        doc.save(`factura_personalizada_${nombre.replace(/\s+/g, '_')}.pdf`);
+    });
+</script>
+
+
+
+
+</body>
+
+</html>
