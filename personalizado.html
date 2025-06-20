@@ -69,17 +69,16 @@
                         </select>
                     </div>
 
-                    <div class="input-groupo">
-                        <label for="sport">Tipo de tela <span class="badge">Requerido</span></label>
-                        <select id="sport" required>
-                            <option value="" disabled selected>Selecciona un estilo de tela</option>
-                            <option value="Algodon">Algodon</option>
-                            <option value="Cotton">Transpirable</option>
-                            <option value="beisbol">Sintetico</option>
-                            <option value="Formula 1">Reciclable</option>
-                            <option value="Motocross">Elastico</option>
-                        </select>
-                    </div>
+                    <!--<label for="fabric">Tipo de tela <span class="badge">Requerido</span></label>
+                    <select id="fabric" required>
+                        <option value="" disabled selected>Selecciona un estilo de tela</option>
+                        <option value="Algodón">Algodón</option>
+                        <option value="Transpirable">Transpirable</option>
+                        <option value="Sintético">Sintético</option>
+                        <option value="Reciclable">Reciclable</option>
+                        <option value="Elástico">Elástico</option>
+                    </select>-->
+
 
                     <div class="form-grid">
                         <div class="input-group">
@@ -175,10 +174,36 @@
                 </div>
             </div>
 
-            <button onclick="location.href='Pagocamisap.html'" type="button" class="btn-submit">Continuar al Pago</button>
+            <button onclick="location.href='Pagocamisap.html'" type="button" class="btn-submit">Continuar al
+                Pago</button>
 
         </form>
     </div>
+
+    <script>
+        document.getElementById('customForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const data = {
+                deporte: document.getElementById('sport').value,
+                tela: document.getElementById('fabric').value,
+                estilo: document.getElementById('style').value,
+                nombre: document.getElementById('name').value,
+                numero: document.getElementById('number').value,
+                equipo: document.getElementById('team').value,
+                color: document.getElementById('color').value,
+                colorNombre: document.getElementById('colorName').value,
+                talla: document.getElementById('size').value,
+                notas: document.getElementById('notes').value
+            };
+
+            // Guarda los datos en localStorage para usarlos en la siguiente página
+            localStorage.setItem('camisetaPersonalizada', JSON.stringify(data));
+
+            // Redirige a la página de compra
+            window.location.href = 'Pagocamisap.html';
+        });
+    </script>
 
 
     <script>
