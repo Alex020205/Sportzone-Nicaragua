@@ -11,15 +11,13 @@
 </head>
 
 <body>
-
-    <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="" class="navbar-brand">
+                <a href="#" class="navbar-brand">
                     <h1 class="m-0 text-primary"><span class="text-dark">Sport</span>.NIC</h1>
                 </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
@@ -27,164 +25,77 @@
                         <a href="index.html" class="nav-item nav-link active">Hogar</a>
                         <a href="about.html" class="nav-item nav-link">Acerca de</a>
                         <a href="service.html" class="nav-item nav-link">Servicios</a>
-                        <a href="contact.html" class="nav-item nav-link">Catalogo</a>
+                        <a href="contact.html" class="nav-item nav-link">Catálogo</a>
                         <a href="carrito.html" class="nav-item nav-link">Carrito</a>
-
                     </div>
                 </div>
             </nav>
         </div>
     </div>
-    <!-- Navbar End -->
-
-
-
-
-
 
     <div class="form-container">
         <h1>Personaliza tu Camiseta Deportiva</h1>
 
         <form id="customForm">
-            <!-- Sección 1: Tipo de Camiseta -->
             <div class="form-section">
-                <div class="section-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                    <h2>Tipo de Camiseta</h2>
-                </div>
+                <h2>Tipo de Camiseta</h2>
+                <label>Deporte:</label>
+                <select id="sport">
+                    <option value="">Selecciona un deporte</option>
+                    <option value="futbol">Fútbol</option>
+                    <option value="baloncesto">Baloncesto</option>
+                    <option value="beisbol">Béisbol</option>
+                    <option value="Formula 1">Formula 1</option>
+                    <option value="Motocross">Motocross</option>
+                </select>
 
-                <div class="form-grid">
-                    <div class="input-groupo">
-                        <label for="sport">Deporte <span class="badge">Requerido</span></label>
-                        <select id="sport" required>
-                            <option value="" disabled selected>Selecciona un deporte</option>
-                            <option value="futbol">Fútbol</option>
-                            <option value="baloncesto">Baloncesto</option>
-                            <option value="beisbol">Béisbol</option>
-                            <option value="Formula 1">Formula 1</option>
-                            <option value="Motocross">Motocross</option>
-                        </select>
-                    </div>
+                <label>Tipo de Tela:</label>
+                <input id="fabric" placeholder="Ej: Algodón">
 
-                    <!--<label for="fabric">Tipo de tela <span class="badge">Requerido</span></label>
-                    <select id="fabric" required>
-                        <option value="" disabled selected>Selecciona un estilo de tela</option>
-                        <option value="Algodón">Algodón</option>
-                        <option value="Transpirable">Transpirable</option>
-                        <option value="Sintético">Sintético</option>
-                        <option value="Reciclable">Reciclable</option>
-                        <option value="Elástico">Elástico</option>
-                    </select>-->
-
-
-                    <div class="form-grid">
-                        <div class="input-group">
-                            <label for="style">Estilo</label>
-                            <select id="style">
-                                <option value="" disabled selected>Selecciona un estilo</option>
-                                <option value="clasico">Clásico</option>
-                                <option value="ajustado">Ajustado</option>
-                                <option value="mangalarga">Manga larga</option>
-                                <option value="mangacorta">Manga corta</option>
-                            </select>
-                        </div>
-
-                        <!-- Contenedor para la imagen de referencia -->
-                        <div class="input-group">
-                            <label>Vista previa:</label>
-                            <div class="style-preview">
-                                <img id="styleImage" src="img\CamisasJerseys.png" alt="Estilo de camiseta"
-                                    class="preview-image">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <label>Estilo:</label>
+                <select id="style">
+                    <option value="">Selecciona un estilo</option>
+                    <option value="clasico">Clásico</option>
+                    <option value="ajustado">Ajustado</option>
+                    <option value="mangalarga">Manga larga</option>
+                    <option value="mangacorta">Manga corta</option>
+                </select>
             </div>
 
-            <!-- Sección 2: Personalización -->
             <div class="form-section">
-                <div class="section-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                    <h2>Personalización</h2>
-                </div>
-
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label for="name">Nombre en la espalda</label>
-                        <input type="text" id="name" placeholder="Ej: MESSI" maxlength="15">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="number">Número</label>
-                        <input type="number" id="number">
-
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="team">Nombre del equipo (opcional)</label>
-                    <input type="text" id="team" placeholder="Ej: LOS TIGRES">
-                </div>
+                <h2>Personalización</h2>
+                <input type="text" id="name" placeholder="Nombre en la espalda">
+                <input type="number" id="number" placeholder="Número">
+                <input type="text" id="team" placeholder="Nombre del equipo">
             </div>
 
-            <!-- Sección 3: Apariencia -->
             <div class="form-section">
-                <div class="section-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                    </svg>
-                    <h2>Apariencia</h2>
-                </div>
+                <h2>Apariencia</h2>
+                <label>Color:</label>
+                <input type="color" id="color" value="#2a5bd7">
+                <input type="text" id="colorName" readonly value="Azure Blue">
 
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label for="color">Color principal</label>
-                        <div class="color-picker-container">
-                            <input type="color" id="color" value="#2a5bd7">
-                            <div class="color-preview" id="colorPreview" style="background: #2a5bd7;"></div>
-                            <input type="text" id="colorName" readonly value="Azure Blue">
-                        </div>
-                    </div>
+                <label>Talla:</label>
+                <select id="size">
+                    <option value="">Selecciona talla</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
 
-
-                    <div class="input-group">
-                        <label for="size">Talla <span class="badge">Requerido</span></label>
-                        <select id="size" required>
-                            <option value="" disabled selected>Selecciona talla</option>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                            <option value="XL">XL</option>
-                            <option value="XL">XXL</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="notes">Notas adicionales</label>
-                    <textarea id="notes" rows="3" placeholder="Ej: Quiero el logo en el lado izquierdo..."></textarea>
-                </div>
+                <textarea id="notes" placeholder="Notas adicionales..."></textarea>
             </div>
 
-            <button onclick="location.href='Pagocamisap.html'" type="button" class="btn-submit">Continuar al
-                Pago</button>
-
+            <button type="submit">Continuar al Pago</button>
         </form>
     </div>
 
     <script>
         document.getElementById('customForm').addEventListener('submit', function (e) {
             e.preventDefault();
-
             const data = {
                 deporte: document.getElementById('sport').value,
                 tela: document.getElementById('fabric').value,
@@ -197,21 +108,12 @@
                 talla: document.getElementById('size').value,
                 notas: document.getElementById('notes').value
             };
-
-            // Guarda los datos en localStorage para usarlos en la siguiente página
             localStorage.setItem('camisetaPersonalizada', JSON.stringify(data));
-
-            // Redirige a la página de compra
             window.location.href = 'Pagocamisap.html';
         });
-    </script>
 
-
-    <script>
         const colorInput = document.getElementById('color');
-        const preview = document.getElementById('colorPreview');
         const colorNameInput = document.getElementById('colorName');
-
         const colorNames = {
             "#000000": "Black",
             "#ffffff": "White",
@@ -222,94 +124,12 @@
             "#ffff00": "Yellow",
             "#ffa500": "Orange",
             "#800080": "Purple"
-            // Puedes agregar más colores según necesites
         };
-
-        function getClosestColorName(hex) {
-            return colorNames[hex.toLowerCase()] || hex;
-        }
-
         colorInput.addEventListener('input', () => {
-            const color = colorInput.value;
-            preview.style.background = color;
-            colorNameInput.value = getClosestColorName(color);
+            const color = colorInput.value.toLowerCase();
+            colorNameInput.value = colorNames[color] || color;
         });
     </script>
-
-
-    <script>
-        // Cambiar color del preview
-        document.getElementById('color').addEventListener('input', function () {
-            document.getElementById('colorPreview').style.background = this.value;
-        });
-
-        // Validación del formulario
-        document.getElementById('customForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Formulario enviado con éxito!');
-            // Aquí iría la lógica para procesar el pedido
-        });
-    </script>
-
-    <script>
-        document.getElementById('style').addEventListener('change', function () {
-            const style = this.value;
-            const imageElement = document.getElementById('styleImage');
-            let imageUrl = '';
-
-            // Asigna la ruta de la imagen según el estilo seleccionado
-            switch (style) {
-                case 'clasico':
-                    imageUrl = 'img/Camisa-tienda/camisetadeportivaclasica.png';
-                    break;
-                case 'ajustado':
-                    imageUrl = 'img/Camisa-tienda/Ajustada.png';
-                    break;
-                case 'mangalarga':
-                    imageUrl = 'img/Camisa-tienda/MangaLarga.png';
-                    break;
-                case 'mangacorta':
-                    imageUrl = 'img/Camisa-tienda/MangaCorta.png';
-                    break;
-                default:
-                    imageUrl = 'img/Camisa-tienda/bayer.avif';
-            }
-
-            // Efecto de transición al cambiar la imagen
-            imageElement.style.opacity = '0';
-            setTimeout(() => {
-                imageElement.src = imageUrl;
-                imageElement.style.opacity = '1';
-            }, 300);
-        });
-
-        // Precarga de imágenes (opcional)
-        const preloadImages = () => {
-            const styles = ['clasico', 'ajustado', 'mangalarga', 'mangacorta'];
-            styles.forEach(style => {
-                const img = new Image();
-                img.src = `images/camiseta-${style}.jpg`;
-            });
-        };
-        window.addEventListener('load', preloadImages);
-    </script>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-
 </body>
 
 </html>
