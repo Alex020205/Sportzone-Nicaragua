@@ -3,134 +3,166 @@
 <head>
   <meta charset="UTF-8">
   <title>Personalización de Camiseta</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+
+
+      <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+
+
+
+<style>
+    
     * {
-      box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #fff;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
+        font-family: Arial, sans-serif;
+        background: #fff;
+        display:inline;
+        justify-content: center;
+        align-items: center;
+        padding: 60px;
     }
 
     .container {
-      max-width: 400px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+        display: flex;
+        gap: 100px;
+        align-items: center;
     }
 
     .carousel {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 30px;
+        position: relative;
     }
 
     .carousel img {
-      width: 180px;
-      height: auto;
+        width: 400px;
+        height: auto;
+        border-radius: 16px;
     }
 
     .arrow {
-      background: #333;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-size: 20px;
-      margin: 0 10px;
-      border-radius: 4px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #444;
+        color: white;
+        border: none;
+        padding: 18px;
+        cursor: pointer;
+        font-size: 28px;
+    }
+
+    .arrow.left {
+        left: -60px;
+    }
+
+    .arrow.right {
+        right: -60px;
     }
 
     .controls {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+        width: 350px;
+    }
+
+    label {
+        font-size: 20px;
+        margin-bottom: 8px;
     }
 
     .slider-group {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .slider-label {
-      font-size: 14px;
-      margin-bottom: 5px;
+        display: flex;
+        flex-direction: column;
     }
 
     .slider-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     input[type=range] {
-      width: 80%;
-      accent-color: #6c3fc9;
+        width: 100%;
+        accent-color: #6c3fc9;
+        height: 8px;
     }
 
     .value {
-      font-weight: bold;
-      color: #6c3fc9;
-      min-width: 40px;
-      text-align: right;
+        margin-left: 16px;
+        font-weight: bold;
+        color: #6c3fc9;
+        min-width: 60px;
+        text-align: right;
+        font-size: 18px;
     }
 
     select {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 14px;
+        padding: 14px;
+        border-radius: 8px;
+        border: 1.5px solid #ccc;
+        font-size: 18px;
     }
-  </style>
+</style>
 </head>
 <body>
 
 <div class="container">
   <!-- Carrusel -->
   <div class="carousel">
-    <button class="arrow" onclick="prevImage()">&#9664;</button>
-    <img id="shirtImage" src="https://via.placeholder.com/250x300?text=Camiseta+1" alt="Camiseta">
-    <button class="arrow" onclick="nextImage()">&#9654;</button>
+    <button class="arrow left" onclick="prevImage()">&#9664;</button>
+    <img id="shirtImage" src="img/render/-01.png" alt="Camiseta">
+
+    <button class="arrow right" onclick="nextImage()">&#9654;</button>
   </div>
 
   <!-- Controles -->
   <div class="controls">
     <div class="slider-group">
-      <label class="slider-label" for="hombros">Diámetro de hombros</label>
+      <label for="hombros">Diámetro de hombros</label>
       <div class="slider-row">
-        <input type="range" id="hombros" min="10" max="30" value="16">
-        <span class="value" id="valHombros">16 cm</span>
+        <input type="range" id="hombros" min="10" max="30" value="20">
+        <span class="value" id="valHombros">20 cm</span>
       </div>
     </div>
 
     <div class="slider-group">
-      <label class="slider-label" for="pecho">Diámetro de pecho</label>
+      <label for="pecho">Diámetro de pecho</label>
       <div class="slider-row">
-        <input type="range" id="pecho" min="10" max="30" value="13">
-        <span class="value" id="valPecho">13 cm</span>
+        <input type="range" id="pecho" min="10" max="30" value="20">
+        <span class="value" id="valPecho">20 cm</span>
       </div>
     </div>
 
     <div class="slider-group">
-      <label class="slider-label" for="cintura">Ancho de cintura</label>
+      <label for="cintura">Ancho de cintura</label>
       <div class="slider-row">
-        <input type="range" id="cintura" min="10" max="30" value="18">
-        <span class="value" id="valCintura">18 cm</span>
+        <input type="range" id="cintura" min="10" max="30" value="20">
+        <span class="value" id="valCintura">20 cm</span>
       </div>
     </div>
 
     <div>
-      <label class="slider-label" for="cuello">Tipo de cuello</label>
+      <label for="cuello">Tipo de cuello</label>
       <select id="cuello">
         <option value="cuello-v">Cuello V</option>
         <option value="cuello-redondo">Cuello redondo</option>
@@ -143,9 +175,22 @@
 <script>
   // Carrusel
   const images = [
-    "https://via.placeholder.com/250x300?text=Camiseta+1",
-    "https://via.placeholder.com/250x300?text=Camiseta+2",
-    "https://via.placeholder.com/250x300?text=Camiseta+3"
+    "img/render/-01.png",
+    "img/render/-02.png",
+    "img/render/-03.png",
+    "img/render/-04.png",
+    "img/render/-05.png",
+    "img/render/-06.png",       
+    "img/render/-07.png",
+    "img/render/-09.png",
+    "img/render/-10.png",
+    "img/render/-11.png",
+    "img/render/-12.png",
+    "img/render/-13.png",
+    "img/render/-14.png",
+    "img/render/-15.png",
+    "img/render/-16.png",
+    "img/render/-17.png"
   ];
   let currentIndex = 0;
 
@@ -163,7 +208,7 @@
     updateImage();
   }
 
-  // Sliders con valores y almacenamiento
+  // Sliders y almacenamiento
   const sliders = [
     { id: 'hombros', label: 'valHombros' },
     { id: 'pecho', label: 'valPecho' },
@@ -174,18 +219,20 @@
     const slider = document.getElementById(id);
     const output = document.getElementById(label);
 
+    // Mostrar valor inicial
     const saved = localStorage.getItem(id);
     if (saved) slider.value = saved;
 
     output.textContent = `${slider.value} cm`;
 
+    // Escuchar cambios
     slider.addEventListener('input', () => {
       output.textContent = `${slider.value} cm`;
       localStorage.setItem(id, slider.value);
     });
   });
 
-  // Cuello
+  // Select cuello
   const cuelloSelect = document.getElementById('cuello');
   const savedCuello = localStorage.getItem('cuello');
   if (savedCuello) cuelloSelect.value = savedCuello;
@@ -194,6 +241,82 @@
     localStorage.setItem('cuello', cuelloSelect.value);
   });
 </script>
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 py-5 px-sm-3 px-lg-5" style="margin-top: 90px;">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-primary"><span class="text-white">Sport</span>.NIC</h1>
+                </a>
+                <p>Potencia tus entrenamientos con nuestras camisetas deportivas de alto rendimiento. Diseñadas con tejidos técnicos para máxima comodidad y libertad de movimiento.</p>
+                <h6 class="text-white text-uppercase mt-4 mb-3" style="letter-spacing: 5px;">Siguenos</h6>
+                <div class="d-flex justify-content-start">
+                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Servicio</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="service.html"><i class="fa fa-angle-right mr-2"></i>Servicios</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Links</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="about.html"><i class="fa fa-angle-right mr-2"></i>Acerca de</a>
+                    <a class="text-white-50 mb-2" href="service.html"><i class="fa fa-angle-right mr-2"></i>Servicios</a>
+                    <a class="text-white-50 mb-2" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contacto</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Contactos</h5>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>Siguenos en nuestras plataformas digitales</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+505 81933127</p>
+                <p><i class="fa fa-envelope mr-2"></i>jmoralesalexander10@gmail.com</p>                
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white-50">Copyright &copy; <a href="#"></a>. All Rights Reserved.</a>
+                </p>
+            </div>
+            <div class="col-lg-6 text-center text-md-right">
+                <p class="m-0 text-white-50">Designed by <a href="Jersys.html">Sport.NIC</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+
+
 
 </body>
 </html>
