@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Personalización de Camiseta</title>
+<style>
+    @media (max-width: 900px) {
+        .container {
+            flex-direction: column;
+            gap: 40px;
+            align-items: stretch;
+        }
+        .carousel img {
+            width: 100%;
+            max-width: 320px;
+        }
+        .controls {
+            width: 100%;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+        .arrow.left {
+            left: -30px;
+        }
+        .arrow.right {
+            right: -30px;
+        }
+        body {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .carousel img {
+            max-width: 95vw;
+        }
+        .controls {
+            max-width: 100%;
+        }
+        .arrow {
+            padding: 10px;
+            font-size: 22px;
+        }
+        label, .value {
+            font-size: 16px;
+        }
+        select {
+            font-size: 16px;
+            padding: 10px;
+        }
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 60px;
+    }
+
+    .container {
+        display: flex;
+        gap: 100px;
+        align-items: center;
+    }
+
+    .carousel {
+        position: relative;
+    }
+
+    .carousel img {
+        width: 400px;
+        height: auto;
+        border-radius: 16px;
+    }
+
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #444;
+        color: white;
+        border: none;
+        padding: 18px;
+        cursor: pointer;
+        font-size: 28px;
+    }
+
+    .arrow.left {
+        left: -60px;
+    }
+
+    .arrow.right {
+        right: -60px;
+    }
+
+    .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+        width: 350px;
+    }
+
+    label {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .slider-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .slider-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    input[type=range] {
+        width: 100%;
+        accent-color: #6c3fc9;
+        height: 8px;
+    }
+
+    .value {
+        margin-left: 16px;
+        font-weight: bold;
+        color: #6c3fc9;
+        min-width: 60px;
+        text-align: right;
+        font-size: 18px;
+    }
+
+    select {
+        padding: 14px;
+        border-radius: 8px;
+        border: 1.5px solid #ccc;
+        font-size: 18px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Carrusel -->
+  <div class="carousel">
+    <button class="arrow left" onclick="prevImage()">&#9664;</button>
+    <img id="shirtImage" src="img/render/-01.png" alt="Camiseta">
+
+    <button class="arrow right" onclick="nextImage()">&#9654;</button>
+  </div>
+
+  <!-- Controles -->
+  <div class="controls">
+    <div class="slider-group">
+      <label for="hombros">Diámetro de hombros</label>
+      <div class="slider-row">
+        <input type="range" id="hombros" min="10" max="30" value="20">
+        <span class="value" id="valHombros">20 cm</span>
+      </div>
+    </div>
+
+    <div class="slider-group">
+      <label for="pecho">Diámetro de pecho</label>
+      <div class="slider-row">
+        <input type="range" id="pecho" min="10" max="30" value="20">
+        <span class="value" id="valPecho">20 cm</span>
+      </div>
+    </div>
+
+    <div class="slider-group">
+      <label for="cintura">Ancho de cintura</label>
+      <div class="slider-row">
+        <input type="range" id="cintura" min="10" max="30" value="20">
+        <span class="value" id="valCintura">20 cm</span>
+      </div>
+    </div>
+
+    <div>
+      <label for="cuello">Tipo de cuello</label>
+      <select id="cuello">
+        <option value="cuello-v">Cuello V</option>
+        <option value="cuello-redondo">Cuello redondo</option>
+        <option value="cuello-tortuga">Cuello de tortuga</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Carrusel
+  const images = [
+    "img/render/-01.png",
+    "img/render/-02.png",
+    "img/render/-03.png",
+    "img/render/-04.png",
+    "img/render/-05.png",
+    "img/render/-06.png",       
+    "img/render/-07.png",
+    "img/render/-09.png",
+    "img/render/-10.png",
+    "img/render/-11.png",
+    "img/render/-12.png",
+    "img/render/-13.png",
+    "img/render/-14.png",
+    "img/render/-15.png",
+    "img/render/-16.png",
+    "img/render/-17.png"
+  ];
+  let currentIndex = 0;
+
+  function updateImage() {
+    document.getElementById('shirtImage').src = images[currentIndex];
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  }
+
+  // Sliders y almacenamiento
+  const sliders = [
+    { id: 'hombros', label: 'valHombros' },
+    { id: 'pecho', label: 'valPecho' },
+    { id: 'cintura', label: 'valCintura' }
+  ];
+
+  sliders.forEach(({ id, label }) => {
+    const slider = document.getElementById(id);
+    const output = document.getElementById(label);
+
+    // Mostrar valor inicial
+    const saved = localStorage.getItem(id);
+    if (saved) slider.value = saved;
+
+    output.textContent = `${slider.value} cm`;
+
+    // Escuchar cambios
+    slider.addEventListener('input', () => {
+      output.textContent = `${slider.value} cm`;
+      localStorage.setItem(id, slider.value);
+    });
+  });
+
+  // Select cuello
+  const cuelloSelect = document.getElementById('cuello');
+  const savedCuello = localStorage.getItem('cuello');
+  if (savedCuello) cuelloSelect.value = savedCuello;
+
+  cuelloSelect.addEventListener('change', () => {
+    localStorage.setItem('cuello', cuelloSelect.value);
+  });
+</script>
+
+</body>
+</html>
