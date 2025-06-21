@@ -11,27 +11,6 @@
 </head>
 
 <body>
-    <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="#" class="navbar-brand">
-                    <h1 class="m-0 text-primary"><span class="text-dark">Sport</span>.NIC</h1>
-                </a>
-                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Hogar</a>
-                        <a href="about.html" class="nav-item nav-link">Acerca de</a>
-                        <a href="service.html" class="nav-item nav-link">Servicios</a>
-                        <a href="contact.html" class="nav-item nav-link">Catálogo</a>
-                        <a href="carrito.html" class="nav-item nav-link">Carrito</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
 
     <div class="form-container">
         <h1>Personaliza tu Camiseta Deportiva</h1>
@@ -91,130 +70,130 @@
                 <textarea id="notes" placeholder="Notas adicionales..."></textarea>
             </div>
 
-            
-<div class="container">
-  <!-- Carrusel -->
-  <div class="carousel">
-    <button class="arrow left" onclick="prevImage()">&#9664;</button>
-    <img id="shirtImage" src="img/render/-01.png" alt="Camiseta">
-
-    <button class="arrow right" onclick="nextImage()">&#9654;</button>
-  </div>
-
-  <!-- Controles -->
-  <div class="controls">
-    <div class="slider-group">
-      <label for="hombros">Diámetro de hombros</label>
-      <div class="slider-row">
-        <input type="range" id="hombros" min="10" max="30" value="20">
-        <span class="value" id="valHombros">20 cm</span>
-      </div>
-    </div>
-
-    <div class="slider-group">
-      <label for="pecho">Diámetro de pecho</label>
-      <div class="slider-row">
-        <input type="range" id="pecho" min="10" max="30" value="20">
-        <span class="value" id="valPecho">20 cm</span>
-      </div>
-    </div>
-
-    <div class="slider-group">
-      <label for="cintura">Ancho de cintura</label>
-      <div class="slider-row">
-        <input type="range" id="cintura" min="10" max="30" value="20">
-        <span class="value" id="valCintura">20 cm</span>
-      </div>
-    </div>
-
-    <div>
-      <label for="cuello">Tipo de cuello</label>
-      <select id="cuello">
-        <option value="cuello-v">Cuello V</option>
-        <option value="cuello-redondo">Cuello redondo</option>
-        <option value="cuello-tortuga">Cuello de tortuga</option>
-      </select>
-    </div>
-  </div>
-</div>
 
 
-            
-            <button type="submit">Continuar al Pago</button>
+            <div class="container">
+                <!-- Carrusel -->
+                <div class="carousel">
+                    <button type="button" onclick="prevImage()">&#9664;</button>
+                    <img id="shirtImage" src="img/render/-01.png" alt="Camiseta">
+                    <button type="button" onclick="nextImage()">&#9654;</button>
+                </div>
+
+                <!-- Controles -->
+                <div class="controls">
+                    <div class="slider-group">
+                        <label class="slider-label" for="hombros">Diámetro de hombros</label>
+                        <div class="slider-row">
+                            <input type="range" id="hombros" min="10" max="30" value="16">
+                            <span class="value" id="valHombros">16 cm</span>
+                        </div>
+                    </div>
+
+                    <div class="slider-group">
+                        <label class="slider-label" for="pecho">Diámetro de pecho</label>
+                        <div class="slider-row">
+                            <input type="range" id="pecho" min="10" max="30" value="13">
+                            <span class="value" id="valPecho">13 cm</span>
+                        </div>
+                    </div>
+
+                    <div class="slider-group">
+                        <label class="slider-label" for="cintura">Ancho de cintura</label>
+                        <div class="slider-row">
+                            <input type="range" id="cintura" min="10" max="30" value="18">
+                            <span class="value" id="valCintura">18 cm</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="slider-label" for="cuello">Tipo de cuello</label>
+                        <select id="cuello">
+                            <option value="cuello-v">Cuello V</option>
+                            <option value="cuello-redondo">Cuello redondo</option>
+                            <option value="cuello-tortuga">Cuello de tortuga</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit">Continuar al Pago</button>
+
+            </div>
+
         </form>
+
+        </head>
+
+        <body>
+
+            <script>
+                // Carrusel
+                const images = [
+                    'img/render/-01.png',
+                    'img/render/-02.png',
+                    'img/render/-03.png',
+                    'img/render/-04.png',
+                    'img/render/-05.png',
+                    'img/render/-06.png',
+                    'img/render/-07.png',
+                    'img/render/-09.png',
+                    'img/render/-10.png',
+                    'img/render/-11.png',
+                    'img/render/-12.png',
+                    'img/render/-13.png',
+                    'img/render/-14.png',
+                    'img/render/-15.png',
+                    'img/render/-16.png',
+                    'img/render/-17.png',
+                ];
+                let currentIndex = 0;
+
+                function updateImage() {
+                    document.getElementById('shirtImage').src = images[currentIndex];
+                }
+
+                function prevImage() {
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    updateImage();
+                }
+
+                function nextImage() {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    updateImage();
+                }
+
+                // Sliders con valores y almacenamiento
+                const sliders = [
+                    { id: 'hombros', label: 'valHombros' },
+                    { id: 'pecho', label: 'valPecho' },
+                    { id: 'cintura', label: 'valCintura' }
+                ];
+
+                sliders.forEach(({ id, label }) => {
+                    const slider = document.getElementById(id);
+                    const output = document.getElementById(label);
+
+                    const saved = localStorage.getItem(id);
+                    if (saved) slider.value = saved;
+
+                    output.textContent = `${slider.value} cm`;
+
+                    slider.addEventListener('input', () => {
+                        output.textContent = `${slider.value} cm`;
+                        localStorage.setItem(id, slider.value);
+                    });
+                });
+
+                // Cuello
+                const cuelloSelect = document.getElementById('cuello');
+                const savedCuello = localStorage.getItem('cuello');
+                if (savedCuello) cuelloSelect.value = savedCuello;
+
+                cuelloSelect.addEventListener('change', () => {
+                    localStorage.setItem('cuello', cuelloSelect.value);
+                });
+            </script>
+
     </div>
-
-
-<script>
-  // Carrusel
-  const images = [
-    "img/render/-01.png",
-    "img/render/-02.png",
-    "img/render/-03.png",
-    "img/render/-04.png",
-    "img/render/-05.png",
-    "img/render/-06.png",       
-    "img/render/-07.png",
-    "img/render/-09.png",
-    "img/render/-10.png",
-    "img/render/-11.png",
-    "img/render/-12.png",
-    "img/render/-13.png",
-    "img/render/-14.png",
-    "img/render/-15.png",
-    "img/render/-16.png",
-    "img/render/-17.png"
-  ];
-  let currentIndex = 0;
-
-  function updateImage() {
-    document.getElementById('shirtImage').src = images[currentIndex];
-  }
-
-  function prevImage() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateImage();
-  }
-
-  function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateImage();
-  }
-
-  // Sliders y almacenamiento
-  const sliders = [
-    { id: 'hombros', label: 'valHombros' },
-    { id: 'pecho', label: 'valPecho' },
-    { id: 'cintura', label: 'valCintura' }
-  ];
-
-  sliders.forEach(({ id, label }) => {
-    const slider = document.getElementById(id);
-    const output = document.getElementById(label);
-
-    // Mostrar valor inicial
-    const saved = localStorage.getItem(id);
-    if (saved) slider.value = saved;
-
-    output.textContent = `${slider.value} cm`;
-
-    // Escuchar cambios
-    slider.addEventListener('input', () => {
-      output.textContent = `${slider.value} cm`;
-      localStorage.setItem(id, slider.value);
-    });
-  });
-
-  // Select cuello
-  const cuelloSelect = document.getElementById('cuello');
-  const savedCuello = localStorage.getItem('cuello');
-  if (savedCuello) cuelloSelect.value = savedCuello;
-
-  cuelloSelect.addEventListener('change', () => {
-    localStorage.setItem('cuello', cuelloSelect.value);
-  });
-</script>
-
 
     <script>
         document.getElementById('customForm').addEventListener('submit', function (e) {
