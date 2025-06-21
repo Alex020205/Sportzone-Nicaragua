@@ -3,184 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <title>Personalización de Camiseta</title>
-
-
-      <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-
-
-
-
-<style>
-   @media (max-width: 900px) {
-        .container {
-            flex-direction: column;
-            gap: 40px;
-            align-items: stretch;
-        }
-        .carousel img {
-            width: 100%;
-            max-width: 320px;
-        }
-        .controls {
-            width: 100%;
-            max-width: 350px;
-            margin: 0 auto;
-        }
-        .arrow.left {
-            left: -30px;
-        }
-        .arrow.right {
-            right: -30px;
-        }
-        body {
-            padding: 20px;
-        }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
     }
 
     body {
-        font-family: Arial, sans-serif;
-        background: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 60px;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
     }
 
     .container {
-        display: flex;
-        gap: 100px;
-        align-items: center;
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .carousel {
-        position: relative;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
     }
 
     .carousel img {
-        width: 400px;
-        height: auto;
-        border-radius: 16px;
+      width: 180px;
+      height: auto;
     }
 
     .arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #444;
-        color: white;
-        border: none;
-        padding: 18px;
-        cursor: pointer;
-        font-size: 28px;
-    }
-
-    .arrow.left {
-        left: -60px;
-    }
-
-    .arrow.right {
-        right: -60px;
+      background: #333;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 20px;
+      margin: 0 10px;
+      border-radius: 4px;
     }
 
     .controls {
-        display: flex;
-        flex-direction: column;
-        gap: 36px;
-        width: 350px;
-    }
-
-    label {
-        font-size: 20px;
-        margin-bottom: 8px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .slider-group {
-        display: flex;
-        flex-direction: column;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slider-label {
+      font-size: 14px;
+      margin-bottom: 5px;
     }
 
     .slider-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     input[type=range] {
-        width: 100%;
-        accent-color: #6c3fc9;
-        height: 8px;
+      width: 80%;
+      accent-color: #6c3fc9;
     }
 
     .value {
-        margin-left: 16px;
-        font-weight: bold;
-        color: #6c3fc9;
-        min-width: 60px;
-        text-align: right;
-        font-size: 18px;
+      font-weight: bold;
+      color: #6c3fc9;
+      min-width: 40px;
+      text-align: right;
     }
 
     select {
-        padding: 14px;
-        border-radius: 8px;
-        border: 1.5px solid #ccc;
-        font-size: 18px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
     }
-</style>
+  </style>
 </head>
 <body>
 
 <div class="container">
   <!-- Carrusel -->
   <div class="carousel">
-    <button class="arrow left" onclick="prevImage()">&#9664;</button>
-    <img id="shirtImage" src="img/render/-01.png" alt="Camiseta">
-
-    <button class="arrow right" onclick="nextImage()">&#9654;</button>
+    <button class="arrow" onclick="prevImage()">&#9664;</button>
+    <img id="shirtImage" src="https://via.placeholder.com/250x300?text=Camiseta+1" alt="Camiseta">
+    <button class="arrow" onclick="nextImage()">&#9654;</button>
   </div>
 
   <!-- Controles -->
   <div class="controls">
     <div class="slider-group">
-      <label for="hombros">Diámetro de hombros</label>
+      <label class="slider-label" for="hombros">Diámetro de hombros</label>
       <div class="slider-row">
-        <input type="range" id="hombros" min="10" max="30" value="20">
-        <span class="value" id="valHombros">20 cm</span>
+        <input type="range" id="hombros" min="10" max="30" value="16">
+        <span class="value" id="valHombros">16 cm</span>
       </div>
     </div>
 
     <div class="slider-group">
-      <label for="pecho">Diámetro de pecho</label>
+      <label class="slider-label" for="pecho">Diámetro de pecho</label>
       <div class="slider-row">
-        <input type="range" id="pecho" min="10" max="30" value="20">
-        <span class="value" id="valPecho">20 cm</span>
+        <input type="range" id="pecho" min="10" max="30" value="13">
+        <span class="value" id="valPecho">13 cm</span>
       </div>
     </div>
 
     <div class="slider-group">
-      <label for="cintura">Ancho de cintura</label>
+      <label class="slider-label" for="cintura">Ancho de cintura</label>
       <div class="slider-row">
-        <input type="range" id="cintura" min="10" max="30" value="20">
-        <span class="value" id="valCintura">20 cm</span>
+        <input type="range" id="cintura" min="10" max="30" value="18">
+        <span class="value" id="valCintura">18 cm</span>
       </div>
     </div>
 
     <div>
-      <label for="cuello">Tipo de cuello</label>
+      <label class="slider-label" for="cuello">Tipo de cuello</label>
       <select id="cuello">
         <option value="cuello-v">Cuello V</option>
         <option value="cuello-redondo">Cuello redondo</option>
@@ -193,22 +143,9 @@
 <script>
   // Carrusel
   const images = [
-    "img/render/-01.png",
-    "img/render/-02.png",
-    "img/render/-03.png",
-    "img/render/-04.png",
-    "img/render/-05.png",
-    "img/render/-06.png",       
-    "img/render/-07.png",
-    "img/render/-09.png",
-    "img/render/-10.png",
-    "img/render/-11.png",
-    "img/render/-12.png",
-    "img/render/-13.png",
-    "img/render/-14.png",
-    "img/render/-15.png",
-    "img/render/-16.png",
-    "img/render/-17.png"
+    "https://via.placeholder.com/250x300?text=Camiseta+1",
+    "https://via.placeholder.com/250x300?text=Camiseta+2",
+    "https://via.placeholder.com/250x300?text=Camiseta+3"
   ];
   let currentIndex = 0;
 
@@ -226,7 +163,7 @@
     updateImage();
   }
 
-  // Sliders y almacenamiento
+  // Sliders con valores y almacenamiento
   const sliders = [
     { id: 'hombros', label: 'valHombros' },
     { id: 'pecho', label: 'valPecho' },
@@ -237,20 +174,18 @@
     const slider = document.getElementById(id);
     const output = document.getElementById(label);
 
-    // Mostrar valor inicial
     const saved = localStorage.getItem(id);
     if (saved) slider.value = saved;
 
     output.textContent = `${slider.value} cm`;
 
-    // Escuchar cambios
     slider.addEventListener('input', () => {
       output.textContent = `${slider.value} cm`;
       localStorage.setItem(id, slider.value);
     });
   });
 
-  // Select cuello
+  // Cuello
   const cuelloSelect = document.getElementById('cuello');
   const savedCuello = localStorage.getItem('cuello');
   if (savedCuello) cuelloSelect.value = savedCuello;
@@ -260,29 +195,5 @@
   });
 </script>
 
-
-
-
-
-
-   <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
 </body>
 </html>
