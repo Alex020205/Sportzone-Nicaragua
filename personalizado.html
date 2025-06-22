@@ -196,42 +196,47 @@
     </div>
 
     <script>
-        document.getElementById('customForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const data = {
-                deporte: document.getElementById('sport').value,
-                tela: document.getElementById('fabric').value,
-                estilo: document.getElementById('style').value,
-                nombre: document.getElementById('name').value,
-                numero: document.getElementById('number').value,
-                equipo: document.getElementById('team').value,
-                color: document.getElementById('color').value,
-                colorNombre: document.getElementById('colorName').value,
-                talla: document.getElementById('size').value,
-                notas: document.getElementById('notes').value
-            };
-            localStorage.setItem('camisetaPersonalizada', JSON.stringify(data));
-            window.location.href = 'Pagocamisap.html';
-        });
-
-        const colorInput = document.getElementById('color');
-        const colorNameInput = document.getElementById('colorName');
-        const colorNames = {
-            "#000000": "Black",
-            "#ffffff": "White",
-            "#ff0000": "Red",
-            "#00ff00": "Lime",
-            "#0000ff": "Blue",
-            "#2a5bd7": "Blue",
-            "#ffff00": "Yellow",
-            "#ffa500": "Orange",
-            "#800080": "Purple"
+    document.getElementById('customForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const data = {
+            deporte: document.getElementById('sport').value,
+            tela: document.getElementById('fabric').value,
+            estilo: document.getElementById('style').value,
+            nombre: document.getElementById('name').value,
+            numero: document.getElementById('number').value,
+            equipo: document.getElementById('team').value,
+            color: document.getElementById('color').value,
+            colorNombre: document.getElementById('colorName').value,
+            talla: document.getElementById('size').value,
+            notas: document.getElementById('notes').value,
+            hombros: document.getElementById('hombros').value,
+            pecho: document.getElementById('pecho').value,
+            cintura: document.getElementById('cintura').value,
+            cuello: document.getElementById('cuello').value
         };
-        colorInput.addEventListener('input', () => {
-            const color = colorInput.value.toLowerCase();
-            colorNameInput.value = colorNames[color] || color;
-        });
-    </script>
+        localStorage.setItem('camisetaPersonalizada', JSON.stringify(data));
+        window.location.href = 'Pagocamisap.html';
+    });
+
+    const colorInput = document.getElementById('color');
+    const colorNameInput = document.getElementById('colorName');
+    const colorNames = {
+        "#000000": "Black",
+        "#ffffff": "White",
+        "#ff0000": "Red",
+        "#00ff00": "Lime",
+        "#0000ff": "Blue",
+        "#2a5bd7": "Blue",
+        "#ffff00": "Yellow",
+        "#ffa500": "Orange",
+        "#800080": "Purple"
+    };
+    colorInput.addEventListener('input', () => {
+        const color = colorInput.value.toLowerCase();
+        colorNameInput.value = colorNames[color] || color;
+    });
+</script>
+
 </body>
 
 </html>

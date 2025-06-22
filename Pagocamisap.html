@@ -52,54 +52,64 @@
 
         <div class="mensaje" id="mensaje"></div>
     </div>
+
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const boton = document.getElementById("generarFacturaPersonalizada");
+    document.addEventListener("DOMContentLoaded", function () {
+        const boton = document.getElementById("generarFacturaPersonalizada");
 
-            if (!boton) return;
+        if (!boton) return;
 
-            boton.addEventListener("click", function () {
-                const datosCamisa = JSON.parse(localStorage.getItem("camisetaPersonalizada"));
+        boton.addEventListener("click", function () {
+            const datosCamisa = JSON.parse(localStorage.getItem("camisetaPersonalizada"));
 
-                if (!datosCamisa) {
-                    alert("Faltan los datos de la camiseta. Asegúrate de completar el paso anterior.");
-                    return;
-                }
+            if (!datosCamisa) {
+                alert("Faltan los datos de la camiseta. Asegúrate de completar el paso anterior.");
+                return;
+            }
 
-                const nombre = document.getElementById("nombre").value;
-                const telefono = document.getElementById("telefono").value;
-                const email = document.getElementById("email").value;
-                const direccion = document.getElementById("direccion").value;
-                const metodo = document.getElementById("metodo").value;
+            const nombre = document.getElementById("nombre").value;
+            const telefono = document.getElementById("telefono").value;
+            const email = document.getElementById("email").value;
+            const direccion = document.getElementById("direccion").value;
+            const metodo = document.getElementById("metodo").value;
 
-                if (!nombre || !telefono || !email || !direccion || !metodo) {
-                    alert("Por favor, completa todos los campos antes de generar la factura.");
-                    return;
-                }
+            if (!nombre || !telefono || !email || !direccion || !metodo) {
+                alert("Por favor, completa todos los campos antes de generar la factura.");
+                return;
+            }
 
-                const mensajeWA = `
-                Hola, soy ${nombre}.
-                Quiero pagar con *WhatsApp*. Mis datos son:
-                📞 Teléfono: ${telefono}
-                📧 Email: ${email}
-                📍 Dirección: ${direccion}
+            const mensajeWA = `
+Hola, soy ${nombre}.
+Quiero pagar con *WhatsApp*. Mis datos son:
+📞 Teléfono: ${telefono}
+📧 Email: ${email}
+📍 Dirección: ${direccion}
 
-                🛍️ *Detalles de la camiseta personalizada:*
-                • Deporte: ${datosCamisa.deporte}
-                • Estilo: ${datosCamisa.estilo}
-                • Nombre: ${datosCamisa.nombre}
-                • Número: ${datosCamisa.numero}
-                • Equipo: ${datosCamisa.equipo}
-                • Color: ${datosCamisa.colorNombre} (${datosCamisa.color})
-                • Talla: ${datosCamisa.talla}
-                • Notas: ${datosCamisa.notas || 'Ninguna'}`;
+🛍️ *Detalles de la camiseta personalizada:*
+• Deporte: ${datosCamisa.deporte}
+• Tipo de tela: ${datosCamisa.tela}
+• Estilo: ${datosCamisa.estilo}
+• Nombre en la espalda: ${datosCamisa.nombre}
+• Número: ${datosCamisa.numero}
+• Equipo: ${datosCamisa.equipo}
+• Color: ${datosCamisa.colorNombre} (${datosCamisa.color})
+• Talla: ${datosCamisa.talla}
+• Notas: ${datosCamisa.notas || 'Ninguna'}
 
-                const numero = "50581933127";
-                const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensajeWA.trim())}`;
-                window.open(url, "_blank");
-            });
+🎯 *Ajustes personalizados:*
+• Diámetro de hombros: ${datosCamisa.hombros} cm
+• Diámetro de pecho: ${datosCamisa.pecho} cm
+• Ancho de cintura: ${datosCamisa.cintura} cm
+• Tipo de cuello: ${datosCamisa.cuello}
+`;
+
+            const numero = "50587406034";
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensajeWA.trim())}`;
+            window.open(url, "_blank");
         });
-    </script>
+    });
+</script>
 
 
 
